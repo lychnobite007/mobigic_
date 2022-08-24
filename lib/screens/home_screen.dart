@@ -13,14 +13,14 @@ TextEditingController column = TextEditingController();
 TextEditingController alphabet = TextEditingController();
 TextEditingController search = TextEditingController();
 
-Set<String> tempList = {'a', 'b', 'c', 'd', 'e', 'f'};
+Set<String> tempList = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'};
 
 List<String> list = tempList.toList();
 
 List matchQuery = [];
 Set<String> matchData = {};
 
-List<bool> bools = [false, false, false, false, false, false];
+
 
 class _HomeScreenState extends State<HomeScreen> {
   @override
@@ -29,6 +29,17 @@ class _HomeScreenState extends State<HomeScreen> {
       appBar: AppBar(
         title: Text('GridGame'),
         centerTitle: true,
+        actions: [
+          IconButton(
+            tooltip: 'Reset',
+              onPressed: () {
+            search.text = '';
+            matchData = {};
+            setState(() {
+
+            });
+          } , icon: Icon(Icons.refresh_rounded,))
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
@@ -90,10 +101,7 @@ class _HomeScreenState extends State<HomeScreen> {
                               child: list.length < rows * cols
                                   ? Text(
                                       'Enter more than ${rows * cols} or ${rows * cols}  letters')
-                                  : bools[index]
-                                      ? Text(list[index].toString(),
-                                          style: TextStyle(color: Colors.white))
-                                      : Text(list[index].toString(),
+                                  : Text(list[index].toString(),
                                           style: TextStyle(color: Colors.white)),
                             ),
                           ))
